@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { MarkdownModule } from 'ngx-markdown';
 
 // Rutas
 import { AppRoutingModule } from './app.routes';
@@ -34,7 +35,8 @@ import { AddBlogpostComponent } from './features/blog-post/add-blogpost/add-blog
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MarkdownModule.forRoot()
     
   ],
   providers: [],

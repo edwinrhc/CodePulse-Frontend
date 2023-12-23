@@ -26,5 +26,16 @@ export class BlogPostService {
 
   }
 
+  getAllBlogPosts() : Observable<BlogPost[]>{
+    return this.http.get<BlogPost[]>(`${environment.apiBaseUrl}/api/blogposts`)
+    .pipe(
+        catchError((error) =>{
+          //Manejar el error aqui
+          console.log('Error: ', error);
+          throw error;
+        })
+    )
+  }
+
 
 }
