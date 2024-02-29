@@ -38,7 +38,9 @@
             </div>
 
             <div class="mt-3">
-                <label class="form-label" for="featuredImageUrl">Featured Image Url</label>
+                <label class="form-label" for="featuredImageUrl">Featured Image Url
+                    <button type="button" class="btn btn-dark" (click)="openImageSelector()">Select Image</button>
+                </label>
 
                 <ng-container *ngIf="model.featuredImageUrl !== '' " >
                 <div> 
@@ -95,4 +97,10 @@
 
     </form>
 
+</div>
+
+
+<div class="images-container-modal" [ngClass]="{'d-block': isImageSelectorVisible, 'd-none': !isImageSelectorVisible}">
+    <button type="button" class="btn btn-light" style="position: fixed; top:10px; right: 10px;" (click)="closeImageSelector()">X</button>
+    <app-image-selector></app-image-selector>
 </div>
