@@ -17,7 +17,9 @@ export class CategoryService {
 
 
 
-getAllCategories(query?: string, sortBy?: string, sortDirection?: string ): Observable<Category[]>{
+getAllCategories(
+  query?: string, sortBy?: string, sortDirection?: string,
+  pageNumber?: number, pageSize ?: number): Observable<Category[]>{
 
     let params = new HttpParams();
 
@@ -31,6 +33,14 @@ getAllCategories(query?: string, sortBy?: string, sortDirection?: string ): Obse
       params = params.set('sortDirection',sortDirection);
     }
 
+    if(pageNumber){
+      params = params.set('pageNumber',pageNumber);
+    }
+
+    if(pageSize){
+      params = params.set('pageSize',pageSize);
+    }
+
 
     return this.http.get<Category[]>(`${environment.apiBaseUrl}/api/categories`,
     {
@@ -42,7 +52,9 @@ getAllCategories(query?: string, sortBy?: string, sortDirection?: string ): Obse
   getCategoryById(id: string): Observable<Category>{
    return  this.http.get<Category>(`${environment.apiBaseUrl}/api/categories/${id}`);
   }
-
+  getCategoryCount(): Observable<number>{
+    return  this.http.get<number>(`${environment.apiBaseUrl}/api/categories/count`);
+  }
 
   addCategory(model:AddCategoryRequest): Observable<void>{
     return this.http.post<void>(`${environment.apiBaseUrl}/api/categories?addAuth=true`,model);
